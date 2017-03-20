@@ -21,6 +21,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <fcntl.h>
+#include <asm/ptrace.h>
 #include <sys/ptrace.h>
 #include <sys/types.h>
 #include <sys/wait.h>
