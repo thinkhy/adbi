@@ -18,6 +18,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := base
 LOCAL_SRC_FILES := ../../base/obj/local/armeabi/libbase.a
 #LOCAL_SRC_FILES := ../../base/obj/local/armeabi-v7a/libbase.a
+#LOCAL_CFLAGS += -fPIE -g
+#LOCAL_LDFLAGS += -fPIE -pie
 LOCAL_EXPORT_C_INCLUDES := ../../base
 include $(PREBUILT_STATIC_LIBRARY)
 
@@ -25,7 +27,12 @@ include $(PREBUILT_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE    := libexample
 LOCAL_SRC_FILES := ../epoll.c  ../epoll_arm.c.arm
-LOCAL_CFLAGS := -g
+
+# Enable PIE manually. Will get reset on $(CLEAR_VARS). This
+# is what enabling PIE translates to behind the scenes.
+#LOCAL_CFLAGS += -fPIE -g
+#LOCAL_LDFLAGS += -fPIE -pie
+
 #LOCAL_SHARED_LIBRARIES := dl
 LOCAL_STATIC_LIBRARIES := base
 include $(BUILD_SHARED_LIBRARY)
